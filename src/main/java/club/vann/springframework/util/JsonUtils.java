@@ -11,6 +11,8 @@ import club.vann.springframework.bean.BaseBean;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.ArrayList;
+
 /**
  *
  *
@@ -24,17 +26,39 @@ public class JsonUtils {
     /**
      * 实体类转为Json字符串。
      *
-     * @param bean
+     * @param obj
      * @return
      */
-    public static String bean2Json(BaseBean bean){
-        String jsonStr = gson.toJson(bean);
+    public static String object2Json(Object obj){
+        String jsonStr = gson.toJson(obj);
         return jsonStr;
     }
 
-
-    public static BaseBean json2Bean(){
+    /**
+     * Json字符串转换为Bean。
+     * @return
+     */
+    public static BaseBean json2Bean(String jsonStr){
         BaseBean bean = null;
+        bean = gson.fromJson(jsonStr, BaseBean.class);
         return bean;
+    }
+
+    public static <T> T json2BeanByType(String jsonStr, Class<T> clazz){
+        T t = gson.fromJson(jsonStr, clazz);
+        return t;
+    }
+
+    public static void main(String[] args){
+        BaseBean bean = new BaseBean();
+        bean.setField("FatherField");
+        bean.setFieldList(new ArrayList<Object>());
+
+        BaseBean.Work work = new BaseBean().new Work();
+        work.setName("work");
+        work.setSize(5);
+
+        String str = JsonUtils.object2Json(bean);
+        System.out.println("========== Json :"+str);
     }
 }

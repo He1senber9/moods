@@ -7,6 +7,8 @@
  */
 package club.vann.springframework.bean;
 
+import java.util.List;
+
 /**
  *
  *
@@ -15,5 +17,44 @@ package club.vann.springframework.bean;
  * @since 1.0.0
  */
 public class BaseBean {
+    private String field;
+    private List<Object> fieldList;
 
+    public String getField() {
+        return field;
+    }
+
+    public void setField(String field) {
+        this.field = field;
+    }
+
+    public List<Object> getFieldList() {
+        return fieldList;
+    }
+
+    public void setFieldList(List<Object> fieldList) {
+        this.fieldList = fieldList;
+    }
+
+    public class Work{
+        private String name;
+        private int size;
+
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public int getSize() {
+            return size;
+        }
+
+        public void setSize(int size) {
+            this.size = size;
+        }
+    }
 }

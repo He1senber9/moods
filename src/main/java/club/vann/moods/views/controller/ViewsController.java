@@ -8,7 +8,13 @@
 package club.vann.moods.views.controller;
 
 import club.vann.moods.base.BaseController;
+import club.vann.moods.base.RequestParam;
+import club.vann.moods.base.ResponseParam;
+import club.vann.moods.views.service.ViewService;
 import club.vann.springframework.provide.message.Message;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,16 +28,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/views")
 public class ViewsController extends BaseController {
+    protected final Log log = LogFactory.getLog(getClass());
+
+    @Autowired
+    private ViewService viewService;
+
+    @RequestMapping("/index")
+    public void index(){
+        System.out.println("******* TAG");
+    }
+
     /**
      * 拉取数据。数据形式以Json格式返回。
      *
      * @return
      */
     @RequestMapping("/refresh")
-    public String refreshDate(){
+    public String refreshDate(RequestParam requestParam){
+        super.actionRequest(requestParam);
         Message message = null;
-
         message.isSuccess();
-        return "";
+        ResponseParam responseParam = viewService.queryParagraphList(requestParam);
+        return responseToClient(responseParam);
+    }
+
+    @RequestMapping("/insert")
+    public void insertParagarph(){
+
     }
 }

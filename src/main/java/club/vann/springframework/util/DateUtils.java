@@ -47,4 +47,8 @@ public class DateUtils {
         Date date = new Date();
         return simpleDateFormate.format(date);
     }
+
+    public static java.sql.Date date2SqlDate(){
+        return null;
+    }
 }

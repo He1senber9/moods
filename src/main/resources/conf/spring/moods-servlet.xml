@@ -15,4 +15,9 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <!-- 数据库属性配置-->
+    <context:property-placeholder location="classpath*:/conf/db/db_conf.properties"/>
+    <!-- Log4J配置 -->
+    <context:property-placeholder location="classpath*:/conf/log/log4J.properties"/>
+
 </beans>
